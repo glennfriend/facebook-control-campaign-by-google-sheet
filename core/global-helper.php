@@ -8,6 +8,8 @@ use App\Utility\Config\Config;
 use App\Utility\Console\CliManager;
 use App\Utility\Console\ConsoleHelper;
 
+use Bridge;
+
 // --------------------------------------------------------------------------------
 //  Basic
 // --------------------------------------------------------------------------------
@@ -83,21 +85,11 @@ function di($getParam=null)
 // --------------------------------------------------------------------------------
 
 /**
- *  linux console 版本的 pr()
- *  NOTE: 記得定時清理該內容
- *  使用方式
- *      -> tail -F var/out.log
- *
+ *  error log
  */
-function out($data)
+function errorLog($data)
 {
-    if (is_object($data) || is_array($data)) {
-        $data = print_r($data, true);
-    }
-    else {
-        $data .= "\n";
-    }
-    file_put_contents( getProjectPath('/var/out.log'), $data, FILE_APPEND);
+    Bridge\Log::errorLog($data);
 }
 
 /**

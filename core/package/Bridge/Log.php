@@ -1,5 +1,6 @@
 <?php
 namespace Bridge;
+use Exception;
 
 class Log
 {
@@ -9,7 +10,7 @@ class Log
     /**
      *  init
      */
-    public static function init( $logPath )
+    public static function init($logPath)
     {
         self::$_logPath = $logPath;
     }
@@ -38,10 +39,35 @@ class Log
     /**
      *  system log
      */
+    /*
     public static function record($content)
     {
         $content = date("Y-m-d H:i:s") . ' - '. $content;
         self::save('system.log', $content );
+    }
+    */
+
+    /**
+     *  system error log
+     */
+    public static function errorLog($data)
+    {
+
+        if (is_object($data)) {
+
+            // if (is_a($data, 'Whoops\Exception\ErrorException')) {
+            //     // ....
+            // }
+
+            $className = get_class($data);
+            $data = 'TheErrorContentIs '. $className;
+        }
+        elseif (is_array($data)) {
+            $data = print_r($data, true);
+        }
+
+        $content = date("Y-m-d H:i:s") . ' - '. trim($data);
+        self::save('error.log', $content);
     }
 
     /**

@@ -99,11 +99,17 @@ $initialize = function()
                     ->register('example', 'Lib\Abc')
                     ->addArgument('%app.path%');                    // __construct
                     ->setProperty('setDb', [new Reference('db')]);  // ??
+
+            Example by static method:
+                $di->register('log', 'Bridge\Log');
+                $di->get('log')->init($folderPath);
+
         */
 
         // log & log folder
-        $di->register('log', 'Bridge\Log')
-           ->addMethodCall('init', ['%app.path%/var']);
+        $folderPath = $basePath . '/var';
+        $di->register('log', 'Bridge\Log');
+        $di->get('log')->init($folderPath);
 
         // cache
         $di->register('cache', 'Bridge\Cache')
