@@ -9,9 +9,5 @@
 ```sh
 cp example.config.php config.php
 vi config.php
-```
-
-#### Execute
-```sh
-php go.php
+php autorun.php
 ```
