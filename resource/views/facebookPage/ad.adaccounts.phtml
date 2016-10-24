@@ -1,0 +1,132 @@
+<p>
+    <H3>Ad Accounts</H3>
+</p>
+
+<?php
+
+    try {
+        $response = $fb->get('/me?fields=name');
+        $user = $response->getDecodedBody();
+    }
+    catch(Facebook\Exceptions\FacebookResponseException $e) {
+        echo 'Graph returned an error: ' . $e->getMessage();
+        return;
+    }
+
+    if (!isset($user)) {
+        echo 'user not found';
+        return;
+    }
+
+    try {
+        $adAccountResponse = $fb->get('/me/adaccounts?fields=name');
+        $adaccounts = $adAccountResponse->getDecodedBody();
+    }
+    catch(Facebook\Exceptions\FacebookResponseException $e) {
+        echo 'Graph returned an error: ' . $e->getMessage();
+        return;
+    }
+    catch(Facebook\Exceptions\FacebookSDKException $e) {
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        exit;
+    }
+
+
+
+
+
+
+    $baseUrl = url('/ad-accounts');
+
+    // 1. Select Account
+    if (!isset($adAccountId)) {
+        echo 'Please select an ad account: ';
+        echo '<form id="adaccount-form" action="'. $baseUrl .'" method="get"><select id="ad-accounts" name="aId" onchange="getAdAccountName()">';
+        foreach($adaccounts['data'] as $adaccounts) {
+            echo '<option value="' . $adaccounts['id'] . '">' . $adaccounts['name'] . '</option>';
+        }
+        echo '</select><input type="submit" value="Submit">';
+        echo '</form>';
+    }
+    else {
+        echo '<p>';
+        echo    'Selected Account : ' . $adAccountId;
+        echo '</p>';
+
+        // 2. Once account is selected, select a campaign
+        if (!isset($campaignName)) {
+
+            try {
+                $getCampaignsResponse = $fb->get(
+                    '/' . $adAccountId . '/campaigns?fields=name,effective_status'
+                );
+            }
+            catch(Facebook\Exceptions\FacebookResponseException $e) {
+                // When Graph returns an error
+                echo 'Graph returned an error: ' . $e->getMessage();
+                exit;
+            }
+            catch(Facebook\Exceptions\FacebookSDKException $e) {
+                // When validation fails or other local issues
+                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                exit;
+            }
+
+            // Loop through FB results
+            // https://developers.facebook.com/docs/php/Facebook/5.0.0#next
+            $maxPages = 99;
+
+            echo '<br>Campaigns:<br>';
+            $campaignsEdge = $getCampaignsResponse->getGraphEdge();
+            if (count($campaignsEdge) > 0) {
+                $pageCount = 0;
+                do {
+                    foreach ($campaignsEdge as $campaignsArray) {
+                        $campaigns = $campaignsArray->asArray();
+                        echo "(";
+                        echo cc('campaignStatusColor', $campaigns['effective_status'], $campaigns['effective_status']);
+                        echo ") ";
+                        echo $campaigns['name'];
+                        echo "<br>\n";
+                    }
+                    $pageCount++;
+                }
+                while (
+                    $pageCount < $maxPages
+                    && $campaignsEdge = $fb->next($campaignsEdge)
+                );
+            }
+
+        }
+        else {
+
+            if (!$adAccountId) {
+                die('aid not found');
+            }
+            echo 's293485209348569034859034580r234';
+            exit;
+
+            $storage = ViewHelper::getIni();
+            $storage[$adAccountId] = $campaignName;
+            ViewHelper::setIni($storage);
+
+            $url = \AppModule\url('/', ['aId'=>$adAccountId] );
+            echo '<meta http-equiv="refresh" content="0; url='. $url .'" />';
+            exit;
+
+        }
+    }
+
+?>
+
+<script>
+    function getAdSetName() {
+       var adSetNameHolder = $("#adsets option:selected").text();
+       $('#adset-name-holder').val(adSetNameHolder);
+    }
+    /*
+    function getText(element) {
+       var textHolder = element.options[element.selectedIndex].text;
+       document.getElementById('txt_holder').value = textHolder;
+    }*/
+</script>

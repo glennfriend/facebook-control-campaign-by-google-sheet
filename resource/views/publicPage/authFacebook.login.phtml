@@ -1,0 +1,35 @@
+<?php
+
+    $helper = $fb->getRedirectLoginHelper();
+    $permissions = ['ads_management']; // Optional Permissions
+
+    $uri = di('url')->createUri('/facebook-callback');
+    $loginUrl = $helper->getLoginUrl($uri, $permissions);
+    echo '<p><a href="' . cc('escape', $loginUrl) . '">Log in with Your Facebook</a></p>';
+
+    try {
+        $response = $fb->get('/me?fields=name');
+        $user = $response->getDecodedBody();
+    }
+    catch(Facebook\Exceptions\FacebookResponseException $e) {
+        // echo 'Graph returned an error: ' . $e->getMessage();
+    }
+    catch(Facebook\Exceptions\FacebookSDKException $e) {
+        // $url = url('/facebook-login');
+        // echo '<a href="' . $url . '">Facebook Login</a>';
+    }
+
+    // validate
+    if (!isset($user)) {
+        return;
+    }
+
+    $logoutUrl = $helper->getLogoutUrl($uri, $permissions);
+    echo '<p><a href="' . cc('escape', $logoutUrl) . '">Log Out</a></p>';
+
+
+    // user infromation
+    // ------------------------------------------------------------
+    echo "<p>Logged in as <b>{$user['name']}</b></p>";
+
+

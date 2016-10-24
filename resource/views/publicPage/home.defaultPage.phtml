@@ -1,0 +1,32 @@
+<p>
+    <b>Welcome</b>!
+</p>
+
+<?php
+
+    try {
+        $response = $fb->get('/me?fields=name');
+        $user = $response->getDecodedBody();
+    }
+    catch(Facebook\Exceptions\FacebookResponseException $e) {
+        echo 'Graph returned an error: ' . $e->getMessage();
+    }
+    catch(Facebook\Exceptions\FacebookSDKException $e) {
+        $url = url('/facebook-login');
+        echo '<a href="' . $url . '">Facebook Login</a>';
+    }
+
+    // validate
+    if (!isset($user)) {
+        return;
+    }
+
+    // start
+    // ------------------------------------------------------------
+    $url = url('/ad-accounts');
+    echo "<p>Logged in as <b>{$user['name']}</b></p>";
+
+    $url = url('/ad-accounts');
+    echo '<p><a href="'. $url .'">Ad Accounts</a></p>';
+
+

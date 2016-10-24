@@ -1,0 +1,56 @@
+<?php
+use App\Utility\Identity\UserManager as UserManager;
+?>
+<!DOCTYPE html>
+<html>
+    <?php
+        $baseUrl = url('');
+    ?>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link  href="<?php echo $baseUrl; ?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <section>
+            <div class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="javascript:void(0)"><?php echo cc('trainingIcon'); ?></a></li>
+                            <li><a href="<?php echo $baseUrl; ?>">Home</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav pull-right">
+                            <?php
+                                echo '<li><a href="' . url('/facebook-login')  . '">Facebook Login</a></li>';
+                            ?>
+                            <?php
+                                /*
+                                $user = UserManager::getUser();
+                                if ($user) {
+                                    echo '<li><a href="javascript:void(0)">' . $user->getUsername() . '</a></li>';
+                                    echo '<li><a href="' . url('/logout') . '">Logout</a></li>';
+                                }
+                                else {
+                                    echo '<li><a href="' . url('/login')  . '">Login</a></li>';
+                                }
+                                */
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin:20px;">
+            <?php echo cc('formMessage'); ?>
+            {{content}}
+        </div>
+    </body>
+</html>

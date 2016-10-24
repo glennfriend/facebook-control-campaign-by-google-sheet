@@ -1,0 +1,59 @@
+##################################################
+### security
+
+# 不顯示目錄索引 
+Options -Indexes
+
+##################################################
+# maintenance page
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine on
+#    RewriteBase /google-spreadsheets-tool
+#    RewriteCond %{REMOTE_HOST} !^127\.0\.0\.1
+#    RewriteCond %{REMOTE_HOST} !^192\.168\.
+#    RewriteCond %{REQUEST_URI} !maintenance/index.html$
+#    RewriteCond %{REQUEST_URI} !maintenance/maintenance.jpg$
+#    RewriteRule $ maintenance/index.html [R=302,L]
+#</IfModule>
+
+##################################################
+# deny access
+<FilesMatch "\.(bak|backup|save|config|inc|ini|sql|log|tar|gz|zip)$">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+# linux
+<FilesMatch "\.(sh|swp|swo)$">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+# linux
+# -> .htaccess
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+# ~ tag
+# -> index.php~
+<FilesMatch "~">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+##################################################
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /facebook-control-campaign-by-google-sheet
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
