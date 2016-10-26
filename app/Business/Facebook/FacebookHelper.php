@@ -41,7 +41,7 @@ class FacebookHelper
         }
 
         // 如果有 token, 直接設定進去
-        $token = SystemHelper::getToken();
+        $token = SystemHelper::getFacebookToken();
         if ($token) {
             $facebook->setDefaultAccessToken($token);
         }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 use App\Utility\Project\SlimManager;
-use App\Business\System\SystemHelper;
 
 /**
  *

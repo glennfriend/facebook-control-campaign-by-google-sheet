@@ -8,9 +8,9 @@ class SystemHelper
 {
 
     /**
-     *
+     *  取得一個 facebook 使用的 token string
      */
-    public static function getToken()
+    public static function getFacebookToken()
     {
         $tokenFile = getProjectPath('/var/token.key');
         if (!file_exists($tokenFile)) {
@@ -26,9 +26,9 @@ class SystemHelper
     }
 
     /**
-     *
+     *  儲存一個 facebook 使用的 token string
      */
-    public static function setToken($content)
+    public static function setFacebookToken($content)
     {
         $tokenFile = getProjectPath('/var/token.key');
         return file_put_contents($tokenFile, $content);

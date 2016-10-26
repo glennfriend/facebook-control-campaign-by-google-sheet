@@ -45,7 +45,7 @@ class AuthFacebook extends PublicPageController
         }
 
         if (isset($accessToken)) {
-            SystemHelper::setToken( (string) $accessToken );
+            SystemHelper::setFacebookToken( (string) $accessToken );
         }
 
         $this->render('publicPage.authFacebook.facebookCallback', [

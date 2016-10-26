@@ -18,7 +18,7 @@ class FacebookPageController extends BaseController
         include 'facebookPageHelper.php';
 
         // 還沒登入之前將無法進入
-        $token = SystemHelper::getToken();
+        $token = SystemHelper::getFacebookToken();
         if (!$token) {
             $route = SlimManager::getCurrentRoute();
             return redirect('/facebook-login');
