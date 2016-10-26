@@ -17,3 +17,8 @@ cp example.config.php config.php
 vi config.php
 php autorun.php
 ```
+
+#### Demo
+```sh
+php shell/test-google-sheet.php
+```

@@ -1,14 +1,10 @@
 <?php
-
 use Symfony\Component\VarDumper\Cloner\VarCloner;   // dd()
 use Symfony\Component\VarDumper\Dumper\CliDumper;   // dd()
-
 use App\Utility\Project\SlimManager;
 use App\Utility\Config\Config;
 use App\Utility\Console\CliManager;
 use App\Utility\Console\ConsoleHelper;
-
-use Bridge;
 
 // --------------------------------------------------------------------------------
 //  Basic
@@ -89,7 +85,7 @@ function di($getParam=null)
  */
 function errorLog($data)
 {
-    Bridge\Log::errorLog($data);
+    \Bridge\Log::errorLog($data);
 }
 
 /**
