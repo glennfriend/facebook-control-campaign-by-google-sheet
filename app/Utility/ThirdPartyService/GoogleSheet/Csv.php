@@ -6,6 +6,12 @@ use League\Csv\Reader;
  *  用來下載、處理 google sheet 的程式
  *  不使用 google 的認證
  *  而是利用 共用 google sheet 的方式來達成下載
+ *
+ *  Example:
+ *          $googleSheetFileId = 'xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+ *          $headers = GoogleSheetCsv::getHeadersByFileId($googleSheetFileId);
+ *          $rows    = GoogleSheetCsv::getMapsByFileId($googleSheetFileId);
+ *
  */
 class Csv
 {
