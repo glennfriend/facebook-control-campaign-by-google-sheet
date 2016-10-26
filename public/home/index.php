@@ -14,14 +14,19 @@ $app->get('/404',                   'App\Controllers\PublicPage\Status:show404')
 
 
 // facebook
-$app->get('/ad-accounts',           'App\Controllers\FacebookPage\Ad:Adaccounts');
+$app->get('/ad-accounts',           'App\Controllers\FacebookPage\Ad:adaccounts');
 
 
 
-
+//
 if (isTraining()) {
-    $app->get('/help',          'App\Controllers\PublicPage\Help:help');
-    $app->get('/help-info',     'App\Controllers\PublicPage\Help:info');
+
+    // display google sheet content
+    $app->get('/google-sheet-list', 'App\Controllers\PublicPage\GoogleSheet:listContent');
+
+    // developer dispaly page
+    $app->get('/help',              'App\Controllers\PublicPage\Help:help');
+    $app->get('/help-info',         'App\Controllers\PublicPage\Help:info');
 }
 
 $app->run();
