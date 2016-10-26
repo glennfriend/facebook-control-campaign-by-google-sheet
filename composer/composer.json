@@ -3,6 +3,7 @@
         "facebook/php-sdk-v4":  "5.4.*",
         "facebook/php-ads-sdk": "2.8.*",
         "nette/mail": "2.2.*",
+        "league/csv": "8.1.*",
 
         "filp/whoops": "2.1.*",
         "doctrine/cache": "1.6.*",

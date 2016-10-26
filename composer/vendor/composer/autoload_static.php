@@ -35,6 +35,10 @@ class ComposerStaticInit7ae8964675707e86bb439a799336c5e5
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
+        'L' => 
+        array (
+            'League\\Csv\\' => 11,
+        ),
         'I' => 
         array (
             'Interop\\Container\\' => 18,
@@ -87,6 +91,10 @@ class ComposerStaticInit7ae8964675707e86bb439a799336c5e5
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'League\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/csv/src',
         ),
         'Interop\\Container\\' => 
         array (
