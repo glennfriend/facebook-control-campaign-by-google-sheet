@@ -25,5 +25,4 @@ class GoogleSheet extends PublicPageController
         table($rows, $headers);
     }
 
-
 }
