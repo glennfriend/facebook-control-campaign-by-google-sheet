@@ -59,7 +59,7 @@ function table(Array $rows, $headers=null)
     if ($headers) {
         echo '<tr>';
         foreach ($headers as $value) {
-            echo '<th>'. $value .'</th>';
+            echo '<th>'. htmlspecialchars($value) .'</th>';
         }
         echo '</tr>';
     }
@@ -67,7 +67,7 @@ function table(Array $rows, $headers=null)
     foreach ($rows as $row) {
         echo '<tr>';
         foreach ($row as $value) {
-            echo '<td>'. $value .'</td>';
+            echo '<td>'. htmlspecialchars($value) .'</td>';
         }
         echo '</tr>';
     }
