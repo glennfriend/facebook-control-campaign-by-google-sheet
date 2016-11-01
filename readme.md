@@ -8,7 +8,7 @@
 - sheet file id 類似 xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #### Environment Request
-- [x] PHP 5.6 ~ PHP 7
+- [x] PHP 7
 - [x] composer (https://getcomposer.org/)
 
 #### Installation

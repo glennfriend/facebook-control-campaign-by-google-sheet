@@ -2,6 +2,7 @@
 namespace App\Business\Facebook;
 use Facebook\Facebook;
 use App\Business\System\SystemHelper;
+use Exception;
 
 /**
  *
@@ -52,5 +53,56 @@ class FacebookHelper
     // --------------------------------------------------------------------------------
     //
     // --------------------------------------------------------------------------------
+
+    /**
+     *
+     */
+    public static function getAllCampaigns()
+    {
+        $actId = conf('facebook.act.id');
+
+        try {
+
+            $response = self::getFacebook()->get(
+                '/' . $actId . '/campaigns?fields=id,name'
+            );
+
+        }
+        catch (Facebook\Exceptions\FacebookResponseException $e) {
+            $error = 'Graph returned an error: ' . $e->getMessage();
+            errorLog($error);
+            show($error);
+            exit;
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+            $error = 'Facebook SDK returned an error: ' . $e->getMessage();
+            errorLog($error);
+            show($error);
+            exit;
+        }
+        catch (Exception $e) {
+            $error = 'Facebook SDK returned an error: ' . $e->getMessage();
+            errorLog($error);
+            show($error);
+            exit;
+        }
+
+        $maxPages = 99;
+        $result = [];
+        $campaignsEdge = $response->getGraphEdge();
+        if (count($campaignsEdge) > 0) {
+            $pageCount = 0;
+            do {
+                set_time_limit(300);
+                foreach ($campaignsEdge as $campaignsArray) {
+                    $result[] = $campaignsArray->asArray();
+                }
+                $pageCount++;
+            }
+            while ($pageCount < $maxPages && $campaignsEdge = self::getFacebook()->next($campaignsEdge));
+        }
+
+        return $result;
+    }
 
 }

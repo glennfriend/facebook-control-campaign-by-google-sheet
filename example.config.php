@@ -18,5 +18,11 @@ return [
             'id'     => 'xxxxxxxxxxxxxxx',
             'secret' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
         ],
+        'act' => [
+            'id' => 'act_xxxxxxxxxxxxxxx',
+        ],
+    ],
+    'notify_emails' => [
+        'your@email',
     ],
 ];

@@ -5,9 +5,9 @@ $shellPath = getProjectPath('/shell');
 return [
 
     /**
-     *  每 30 分鐘
-     *      - test google sheet and download to file
+     *  每天早上
+     *      - 依照 google sheet 的設定, 改變 facebook 的 狀態
      */
-    // ['*/30 * * * *', "php {$shellPath}/test-google-sheet.php > /dev/null 2>&1"],
+    ['10 * */1 * *', "php {$shellPath}/execute-facebook-active-pause-by-google-sheet.php > /dev/null 2>&1"],
 
 ];

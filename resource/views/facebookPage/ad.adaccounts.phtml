@@ -86,8 +86,11 @@
                     $campaigns = $campaignsArray->asArray();
                     echo "(";
                     echo cc('campaignStatusColor', $campaigns['effective_status'], $campaigns['effective_status']);
-                    echo ") ";
-                    echo $campaigns['name'];
+                    echo ")";
+                    echo ' (';
+                    echo $campaigns['id'];
+                    echo ')';
+                    echo ' ' . $campaigns['name'];
                     echo "<br>\n";
                 }
                 $pageCount++;
