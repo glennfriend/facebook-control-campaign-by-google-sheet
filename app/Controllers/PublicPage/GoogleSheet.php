@@ -14,6 +14,7 @@ class GoogleSheet extends PublicPageController
      */
     protected function listContent()
     {
+        Helper::checkOvertimeToDownloadFile();
         $rows = Helper::getGoogleSheetByFile();
         if (!$rows) {
             echo 'Error: maybe is file id not found, or can not download';

@@ -10,14 +10,9 @@ require_once dirname(__DIR__) . '/core/bootstrap.php';
 use App\Business\GoogleSheet\Helper;
 
 
-$forceDownload = false;
-if ($forceDownload) {
-    Helper::downloadGoogleSheetToFile();
-    $rows = Helper::getGoogleSheetByFile();
-}
-else {
-    $rows = Helper::getGoogleSheetByFile();
-}
+
+Helper::checkOvertimeToDownloadFile();
+$rows = Helper::getGoogleSheetByFile();
 
 if (!$rows) {
     show("can not get google sheet file!");
