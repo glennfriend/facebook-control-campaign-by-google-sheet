@@ -83,6 +83,22 @@ class Log
         self::save('debug-sql.log', $content);
     }
 
+    /**
+     *  cron log
+     */
+    public static function cron($content)
+    {
+        $prefix =
+            date("Y-m-d H:i:s")
+            . ' - '
+            . date_default_timezone_get()
+            . ' - '
+            . 'PHP ' . phpversion()
+        ;
+
+        self::save('cron.log', $prefix . ' - ' . $content);
+    }
+
     /* --------------------------------------------------------------------------------
         report log
     -------------------------------------------------------------------------------- */
