@@ -8,8 +8,8 @@ class ComposerStaticInit7ae8964675707e86bb439a799336c5e5
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7e702cccdb9dd904f2ccf22e5f37abae' => __DIR__ . '/..' . '/facebook/php-sdk-v4/src/Facebook/polyfills.php',
     );
 
@@ -124,6 +124,13 @@ class ComposerStaticInit7ae8964675707e86bb439a799336c5e5
             'Pimple' => 
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
+        ),
+        'C' => 
+        array (
+            'Cron' => 
+            array (
+                0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
     );
