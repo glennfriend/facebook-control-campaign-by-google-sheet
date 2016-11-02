@@ -22,3 +22,9 @@ php autorun.php
 ```sh
 php shell/test-google-sheet.php
 ```
+
+#### Google Sheet status
+```sh
+A = Active
+P = Pause
+```
