@@ -98,10 +98,11 @@ show();
 show($content);
 
 if ($errorMessages) {
-    MailHelper::send($content . "\n" . $error, 'Notice');
+    $error = join("\n", $errorMessages);
+    MailHelper::send($content . "\n" . $error, 'notice');
 }
 else {
-    MailHelper::send($content);
+    MailHelper::send($content, 'success');
 }
 
 
