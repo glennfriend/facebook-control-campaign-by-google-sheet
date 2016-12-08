@@ -131,8 +131,8 @@ class XmlFileLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $container = new ContainerBuilder();
         $resolver = new LoaderResolver(array(
-            new IniFileLoader($container, new FileLocator(self::$fixturesPath.'/xml')),
-            new YamlFileLoader($container, new FileLocator(self::$fixturesPath.'/xml')),
+            new IniFileLoader($container, new FileLocator(self::$fixturesPath.'/ini')),
+            new YamlFileLoader($container, new FileLocator(self::$fixturesPath.'/yml')),
             $loader = new XmlFileLoader($container, new FileLocator(self::$fixturesPath.'/xml')),
         ));
         $loader->setResolver($resolver);
@@ -164,6 +164,7 @@ class XmlFileLoaderTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(array_keys($expected), array_keys($actual), '->load() imports and merges imported files');
+        $this->assertTrue($actual['imported_from_ini']);
 
         // Bad import throws no exception due to ignore_errors value.
         $loader->load('services4_bad_import.xml');

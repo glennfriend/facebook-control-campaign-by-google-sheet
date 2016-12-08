@@ -1,6 +1,6 @@
 {
     "require" : {
-        "facebook/php-sdk-v4":  "5.4.*",
+        "facebook/graph-sdk": "5.4.*",
         "facebook/php-ads-sdk": "2.8.*",
         "nette/mail": "2.2.*",
         "league/csv": "8.1.*",
