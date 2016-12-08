@@ -12,7 +12,7 @@ perform([
     ],
     [
         'title' => 'Composer Install (use composer.lock)',
-        'cmd'   => "cd composer; composer install",
+        'cmd'   => "cd composer; composer install --no-plugins --no-scripts",
     ],
 ]);
 
